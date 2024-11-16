@@ -1,14 +1,17 @@
-from config import db
-class Product(db.Model):
+from enum import unique
 
-    __tablename__ = 'products'
+from config import  db
+
+class User(db.Model):
+    __tablename__ = 'users'
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
 
     def to_dict(self):
         return {
             'id': self.id,
             'name': self.name,
-            'price': self.price
+            'email': self.email
         }
